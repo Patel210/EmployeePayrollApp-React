@@ -3,7 +3,7 @@
     {
       "name": "mohit kumar new",
       "gender": "male",
-      "departMent": [
+      "departments": [
         "HR"
       ],
       "salary": "30000",
@@ -15,7 +15,7 @@
     {
       "name": "mohit kumar test",
       "gender": "male",
-      "departMent": [
+      "departments": [
         "HR"
       ],
       "salary": "30000",
@@ -27,7 +27,7 @@
     {
       "name": "mohit",
       "gender": "male",
-      "departMent": [
+      "departments": [
         "HR"
       ],
       "salary": "30000",
@@ -39,7 +39,7 @@
     {
       "name": "test",
       "gender": "male",
-      "departMent": [
+      "departments": [
         "HR"
       ],
       "salary": "30000",

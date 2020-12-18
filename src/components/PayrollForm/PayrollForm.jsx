@@ -8,6 +8,7 @@ import profile6 from "../../assets/profile-images/Ellipse -7.png";
 import "./payrollForm.scss";
 import Header from "../Header/Header";
 import { stringifyDate, checkName, checkStartDate } from "./Utility.js";
+import EmployeeService from "../../services/EmployeeService";
 
 export default class PayrollForm extends React.Component {
   constructor(props) {
@@ -19,35 +20,16 @@ export default class PayrollForm extends React.Component {
       gender: "",
       departments: [],
       salary: 300000,
-      day: "Day",
-      month: "Month",
-      year: "Year",
+      day: 0,
+      month: 0,
+      year: 0,
       notes: "",
       nameError: "",
       dateError: "",
+      departmentError: "",
     };
     this.departmentArray = [];
   }
-
-  save = () => {
-    alert(JSON.stringify(this.state));
-  };
-
-  reset = () => {
-    this.setState({
-      name: "",
-      profileUrl: "",
-      gender: "",
-      departments: [],
-      salary: 300000,
-      day: "Day",
-      month: "Month",
-      year: "Year",
-      notes: "",
-      nameError: "",
-      dateError: "",
-    });
-  };
 
   handleRadio = (profile) => {
     this.setState({ [profile.target.name]: profile.target.value });
@@ -61,6 +43,7 @@ export default class PayrollForm extends React.Component {
       if (!this.departmentArray.includes(element.target.value)) {
         this.departmentArray.push(element.target.value);
       }
+      this.setState({ departmentError: "" });
     }
     this.setState({ [element.target.name]: this.departmentArray });
   };
@@ -84,37 +67,136 @@ export default class PayrollForm extends React.Component {
     }
 
     if (element.target.id == "day") {
-      try {
-        checkStartDate(
-          new Date(this.state.year, this.state.month - 1, element.target.value)
-        );
-        this.setState({ dateError: "" });
-      } catch (error) {
-        this.setState({ dateError: error });
+      if (
+        element.target.value != 0 &&
+        this.state.month != 0 &&
+        this.state.year != 0
+      ) {
+        try {
+          checkStartDate(
+            new Date(
+              this.state.year,
+              this.state.month - 1,
+              element.target.value
+            )
+          );
+          this.setState({ dateError: "" });
+        } catch (error) {
+          this.setState({ dateError: error });
+        }
       }
     }
 
     if (element.target.id == "month") {
-      try {
-        checkStartDate(
-          new Date(this.state.year, element.target.value - 1, this.state.day)
-        );
-        this.setState({ dateError: "" });
-      } catch (error) {
-        this.setState({ dateError: error });
+      if (
+        element.target.value != 0 &&
+        this.state.day != 0 &&
+        this.state.year != 0
+      ) {
+        try {
+          checkStartDate(
+            new Date(this.state.year, element.target.value - 1, this.state.day)
+          );
+          this.setState({ dateError: "" });
+        } catch (error) {
+          this.setState({ dateError: error });
+        }
       }
     }
 
     if (element.target.id == "year") {
-      try {
-        checkStartDate(
-          new Date(element.target.value, this.state.month - 1, this.state.day)
-        );
-        this.setState({ dateError: "" });
-      } catch (error) {
-        this.setState({ dateError: error });
+      if (
+        element.target.value != 0 &&
+        this.state.month != 0 &&
+        this.state.day != 0
+      ) {
+        try {
+          checkStartDate(
+            new Date(element.target.value, this.state.month - 1, this.state.day)
+          );
+          this.setState({ dateError: "" });
+        } catch (error) {
+          this.setState({ dateError: error });
+        }
       }
     }
+  };
+
+  validData = (data) => {
+    let isValid = true;
+    if (data.nameError !== "") {
+      isValid = false;
+    }
+
+    if (data.dateError !== "") {
+      isValid = false;
+    }
+
+    if (data.day == 0 || data.month == 0 || data.year == 0) {
+      this.setState({
+        dateError: "Please Select the Date!",
+      });
+      isValid = false;
+    }
+
+    if (data.departments.length != 0) {
+    } else {
+      this.setState({
+        departmentError: "Please Select Atleast One Department!",
+      });
+      isValid = false;
+    }
+
+    return isValid;
+  };
+
+  save = async (event) => {
+    event.preventDefault();
+
+    if (await !this.validData(this.state)) {
+      console.log("Error");
+      return;
+    }
+
+    let employeeData = {
+      name: this.state.name,
+      gender: this.state.gender,
+      departments: this.state.departments,
+      salary: this.state.salary,
+      startDate: stringifyDate(
+        new Date(this.state.year, this.state.month - 1, this.state.day)
+      ),
+      notes: this.state.notes,
+      id: "",
+      profileUrl: this.state.profileUrl,
+    };
+
+    new EmployeeService()
+      .addEmployee(employeeData)
+      .then((employeeData) => {
+        console.log("Data Added Successfully !");
+      })
+      .catch((error) => {
+        console.log("Error While Adding !");
+      });
+    alert(JSON.stringify(employeeData));
+  };
+
+  reset = () => {
+    this.setState({
+      name: "",
+      profileUrl: "",
+      gender: "",
+      departments: [],
+      salary: 300000,
+      day: 0,
+      month: 0,
+      year: 0,
+      notes: "",
+      nameError: "",
+      dateError: "",
+      departmentError: "",
+    });
   };
 
   render() {
@@ -317,6 +399,14 @@ export default class PayrollForm extends React.Component {
                   Others
                 </label>
               </div>
+              <error-output
+                className="text-error"
+                id="name-error"
+                htmlFor="text"
+                value={this.state.departmentError}
+              >
+                {this.state.departmentError}
+              </error-output>
             </div>
             <div className="row-content">
               <label className="label text" htmlFor="salary">
