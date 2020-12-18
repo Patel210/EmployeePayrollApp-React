@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+}
+
+.form-content {
+  min-height: calc(100%-80px);
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0px solid green;
+
+  .form {
+    width: 65%;
+    padding: 44px 60px;
+    background: white 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px gray;
+    border: 1px solid #42515f;
+    border-radius: 8px;
+    opacity: 1;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .form-head {
+    font: normal normal bold 24px/37px Roboto;
+    letter-spacing: 0px;
+    color: #42515f;
+    text-transform: capitalize;
+    opacity: 1;
+    padding-bottom: 20px;
+  }
+
+  .row-content {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    align-items: center;
+    border: 0px solid green;
+  }
+
+  .label {
+    min-width: 140px;
+  }
+
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+
+  .text {
+    font-size: 16px;
+    color: #42515f;
+    opacity: 1;
+    font-family: Roboto;
+  }
+
+  error-output {
+    margin-left: 20px;
+    font-size: 12px;
+    font-style: italic;
+    color: red;
+  }
+
+  .input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #42515f;
+    border-radius: 4px;
+    resize: vertical;
+  }
+
+  .profile-radio-content {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .profile-radio-content > label {
+    display: flex;
+    align-items: center;
+  }
+
+  .profile {
+    width: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+
+  .slider {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  select {
+    padding: 12px;
+    border: 1px solid #42515f;
+    border-radius: 4px;
+    resize: vertical;
+    font: normal normal normal 16px Roboto;
+    letter-spacing: 0px;
+    color: #42515f;
+    background-color: transparent;
+    margin-left: 10px;
+  }
+
+  #day {
+    margin-left: 0px;
+  }
+
+  .buttonParent {
+    display: flex;
+    margin-bottom: 0px;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+
+  .button {
+    font-size: 20px;
+    font-family: Roboto;
+    letter-spacing: 0px;
+    color: #42515f;
+    opacity: 1;
+    background: transparent;
+    border: 1px solid #42515f;
+    font-weight: 400;
+    min-width: 140px;
+    padding: 7px 7px;
+    cursor: pointer;
+  }
+
+  .button {
+    transition-duration: 0.4s;
+  }
+
+  .button:hover {
+    background-color: #42515f;
+    color: azure;
+  }
+
+  .submitButton {
+    background-color: #f5f5f5;
+    margin-right: 5px;
+  }
+
+  .cancelButton {
+    text-decoration: none;
+    text-align: center;
+    margin-left: 0px;
+  }
+}
