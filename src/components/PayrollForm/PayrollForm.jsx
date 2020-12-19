@@ -14,6 +14,7 @@ export default class PayrollForm extends React.Component {
   constructor(props) {
     super(props);
 
+    this.departmentArray = [];
     this.state = {
       name: "",
       profileUrl: "",
@@ -28,7 +29,6 @@ export default class PayrollForm extends React.Component {
       dateError: "",
       departmentError: "",
     };
-    this.departmentArray = [];
   }
 
   handleRadio = (profile) => {
@@ -153,8 +153,8 @@ export default class PayrollForm extends React.Component {
   save = async (event) => {
     event.preventDefault();
 
-    if (await !this.validData(this.state)) {
-      console.log("Error");
+    if (!this.validData(this.state)) {
+      console.log("Error Present");
       return;
     }
 
@@ -171,15 +171,9 @@ export default class PayrollForm extends React.Component {
       profileUrl: this.state.profileUrl,
     };
 
-    new EmployeeService()
-      .addEmployee(employeeData)
-      .then((employeeData) => {
-        console.log("Data Added Successfully !");
-      })
-      .catch((error) => {
-        console.log("Error While Adding !");
-      });
+    new EmployeeService().addEmployee(employeeData);
     alert(JSON.stringify(employeeData));
+    this.reset();
   };
 
   reset = () => {
@@ -204,12 +198,7 @@ export default class PayrollForm extends React.Component {
       <React.Fragment>
         <Header />
         <div className="form-content">
-          <form
-            className="form"
-            action="#"
-            onSubmit={this.save}
-            onReset={this.reset}
-          >
+          <form className="form" action="#">
             <div className="form-head">
               <strong>Employee Payroll Form</strong>
             </div>
@@ -539,10 +528,15 @@ export default class PayrollForm extends React.Component {
                   type="submit"
                   className="button submitButton"
                   id="submitButton"
+                  onClick={this.save}
                 >
                   Submit
                 </button>
-                <button type="reset" className="resetButton button">
+                <button
+                  type="reset"
+                  className="resetButton button"
+                  onClick={this.reset}
+                >
                   Reset
                 </button>
               </div>

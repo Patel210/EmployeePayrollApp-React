@@ -47,6 +47,71 @@
       "notes": "",
       "id": 1604589731061,
       "profileUrl": "../assets/profile-images/Ellipse -3.png"
+    },
+    {
+      "name": "Pranav",
+      "gender": "Male",
+      "departments": [
+        "HR",
+        "Sales"
+      ],
+      "salary": "470000",
+      "startDate": "19 Nov 2020",
+      "notes": "",
+      "id": 1604589731062,
+      "profileUrl": "../../assets/profile-images/Ellipse -2.png"
+    },
+    {
+      "name": "Vaibhavi Patel",
+      "gender": "Female",
+      "departments": [
+        "Sales",
+        "HR"
+      ],
+      "salary": "470000",
+      "startDate": "19 Dec 2020",
+      "notes": "Started Working on 19th Dec",
+      "id": 1604589731063,
+      "profileUrl": "../../assets/profile-images/Ellipse -1.png"
+    },
+    {
+      "name": "Vishal Gupta",
+      "gender": "Male",
+      "departments": [
+        "Finance"
+      ],
+      "salary": "440000",
+      "startDate": "15 Dec 2020",
+      "notes": "Started Working on 15th Dec",
+      "id": 1604589731064,
+      "profileUrl": "../../assets/profile-images/Ellipse -3.png"
+    },
+    {
+      "name": "Pranav",
+      "gender": "",
+      "departments": [
+        "Finance",
+        "HR"
+      ],
+      "salary": "460000",
+      "startDate": "18 Dec 2020",
+      "notes": "",
+      "id": 1604589731065,
+      "profileUrl": "../../assets/profile-images/Ellipse -2.png"
+    },
+    {
+      "name": "Pranav",
+      "gender": "Male",
+      "departments": [
+        "Engineer",
+        "Finance",
+        "Sales"
+      ],
+      "salary": 300000,
+      "startDate": "18 Dec 2020",
+      "notes": "",
+      "id": 1604589731066,
+      "profileUrl": "../../assets/profile-images/Ellipse -3.png"
     }
   ]
 }
