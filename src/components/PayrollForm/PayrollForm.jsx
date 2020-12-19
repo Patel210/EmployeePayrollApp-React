@@ -171,7 +171,12 @@ export default class PayrollForm extends React.Component {
       profileUrl: this.state.profileUrl,
     };
 
-    new EmployeeService().addEmployee(employeeData);
+    new EmployeeService()
+      .addEmployee(employeeData)
+      .then((data) => console.log("Data Added Successfully"))
+      .catch((error) =>
+        console.log("Error Encountered while Adding the Data!")
+      );
     alert(JSON.stringify(employeeData));
     this.reset();
   };
