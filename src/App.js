@@ -5,14 +5,18 @@ import {
   Switch,
   Route, Redirect
 } from 'react-router-dom';
+import HomePage from './components/HomePage/HomePage';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path=""> 
+          <Route exact path="/payroll-form"> 
             <PayrollForm />  
+          </Route>
+          <Route exact path=""> 
+            <HomePage />  
           </Route>
         </Switch>
       </Router>

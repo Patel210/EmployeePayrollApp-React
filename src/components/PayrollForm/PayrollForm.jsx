@@ -1,10 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import profile1 from "../../assets/profile-images/Ellipse -1.png";
 import profile2 from "../../assets/profile-images/Ellipse -2.png";
 import profile3 from "../../assets/profile-images/Ellipse -3.png";
 import profile4 from "../../assets/profile-images/Ellipse -4.png";
-import profile5 from "../../assets/profile-images/Ellipse -5.png";
-import profile6 from "../../assets/profile-images/Ellipse -7.png";
 import "./payrollForm.scss";
 import Header from "../Header/Header";
 import { stringifyDate, checkName, checkStartDate } from "./Utility.js";
@@ -15,6 +14,7 @@ export default class PayrollForm extends React.Component {
     super(props);
 
     this.departmentArray = [];
+    this.employeeService = new EmployeeService();
     this.state = {
       name: "",
       profileUrl: "",
@@ -171,7 +171,7 @@ export default class PayrollForm extends React.Component {
       profileUrl: this.state.profileUrl,
     };
 
-    new EmployeeService()
+    this.employeeService
       .addEmployee(employeeData)
       .then((data) => console.log("Data Added Successfully"))
       .catch((error) =>
@@ -203,7 +203,12 @@ export default class PayrollForm extends React.Component {
       <React.Fragment>
         <Header />
         <div className="form-content">
-          <form className="form" action="#">
+          <form
+            className="form"
+            action="#"
+            onSubmit={this.save}
+            onReset={this.reset}
+          >
             <div className="form-head">
               <strong>Employee Payroll Form</strong>
             </div>
@@ -278,28 +283,6 @@ export default class PayrollForm extends React.Component {
                     required
                   />
                   <img className="profile" id="image4" src={profile4} />
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    id="profile5"
-                    name="profileUrl"
-                    value="../../assets/profile-images/Ellipse -5.png"
-                    onChange={this.handleRadio}
-                    required
-                  />
-                  <img className="profile" id="image5" src={profile5} />
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    id="profile6"
-                    name="profileUrl"
-                    value="../../assets/profile-images/Ellipse -7.png"
-                    onChange={this.handleRadio}
-                    required
-                  />
-                  <img className="profile" id="image6" src={profile6} />
                 </label>
               </div>
             </div>
@@ -522,26 +505,18 @@ export default class PayrollForm extends React.Component {
               ></textarea>
             </div>
             <div className="buttonParent">
-              <a
-                href="./HomePage.html"
-                className="resetButton button cancelButton"
-              >
+              <Link to="home-page" className="resetButton button cancelButton">
                 Cancel
-              </a>
+              </Link>
               <div className="submit-reset">
                 <button
                   type="submit"
                   className="button submitButton"
                   id="submitButton"
-                  onClick={this.save}
                 >
                   Submit
                 </button>
-                <button
-                  type="reset"
-                  className="resetButton button"
-                  onClick={this.reset}
-                >
+                <button type="reset" className="resetButton button">
                   Reset
                 </button>
               </div>

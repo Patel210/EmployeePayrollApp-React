@@ -1,67 +1,6 @@
 {
   "employee": [
     {
-      "name": "mohit kumar new",
-      "gender": "male",
-      "departments": [
-        "HR"
-      ],
-      "salary": "30000",
-      "startDate": "1 Jan 2020",
-      "notes": "",
-      "id": 1604589551457,
-      "profileUrl": "../assets/profile-images/Ellipse 1.png"
-    },
-    {
-      "name": "mohit kumar test",
-      "gender": "male",
-      "departments": [
-        "HR"
-      ],
-      "salary": "30000",
-      "startDate": "1 Jan 2020",
-      "notes": "",
-      "id": 1604589594363,
-      "profileUrl": "../assets/profile-images/Ellipse 1.png"
-    },
-    {
-      "name": "mohit",
-      "gender": "male",
-      "departments": [
-        "HR"
-      ],
-      "salary": "30000",
-      "startDate": "1 Jan 2020",
-      "notes": "",
-      "id": 1604589699566,
-      "profileUrl": "../assets/profile-images/Ellipse -3.png"
-    },
-    {
-      "name": "test",
-      "gender": "male",
-      "departments": [
-        "HR"
-      ],
-      "salary": "30000",
-      "startDate": "1 Jan 2020",
-      "notes": "",
-      "id": 1604589731061,
-      "profileUrl": "../assets/profile-images/Ellipse -3.png"
-    },
-    {
-      "name": "Pranav",
-      "gender": "Male",
-      "departments": [
-        "HR",
-        "Sales"
-      ],
-      "salary": "470000",
-      "startDate": "19 Nov 2020",
-      "notes": "",
-      "id": 1604589731062,
-      "profileUrl": "../../assets/profile-images/Ellipse -2.png"
-    },
-    {
       "name": "Vaibhavi Patel",
       "gender": "Female",
       "departments": [
@@ -88,19 +27,6 @@
     },
     {
       "name": "Pranav",
-      "gender": "",
-      "departments": [
-        "Finance",
-        "HR"
-      ],
-      "salary": "460000",
-      "startDate": "18 Dec 2020",
-      "notes": "",
-      "id": 1604589731065,
-      "profileUrl": "../../assets/profile-images/Ellipse -2.png"
-    },
-    {
-      "name": "Pranav",
       "gender": "Male",
       "departments": [
         "Engineer",
@@ -112,6 +38,48 @@
       "notes": "",
       "id": 1604589731066,
       "profileUrl": "../../assets/profile-images/Ellipse -3.png"
+    },
+    {
+      "name": "Daksh",
+      "gender": "Male",
+      "departments": [
+        "HR",
+        "Sales",
+        "Finance",
+        "Engineer",
+        "Others"
+      ],
+      "salary": "500000",
+      "startDate": "19 Dec 2020",
+      "notes": "",
+      "id": 1604589731067,
+      "profileUrl": "../../assets/profile-images/Ellipse -2.png"
+    },
+    {
+      "name": "Vaishali Sharma",
+      "gender": "Female",
+      "departments": [
+        "Sales",
+        "HR"
+      ],
+      "salary": "410000",
+      "startDate": "19 Dec 2020",
+      "notes": "",
+      "id": 1604589731068,
+      "profileUrl": "../../assets/profile-images/Ellipse -4.png"
+    },
+    {
+      "name": "Varun Poddar",
+      "gender": "Male",
+      "departments": [
+        "Sales",
+        "Finance"
+      ],
+      "salary": "490000",
+      "startDate": "18 Dec 2020",
+      "notes": "",
+      "id": 1604589731069,
+      "profileUrl": "../../assets/profile-images/Ellipse -2.png"
     }
   ]
 }
