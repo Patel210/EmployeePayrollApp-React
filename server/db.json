@@ -27,7 +27,7 @@
     },
     {
       "id": 1604589731066,
-      "name": "Pranav",
+      "name": "Pranav Patel",
       "gender": "Male",
       "departments": [
         "Engineer",
@@ -41,13 +41,13 @@
     },
     {
       "id": 1604589731067,
-      "name": "Daksh",
+      "name": "Daksh Naruka",
       "gender": "Male",
       "departments": [
         "HR",
         "Sales",
         "Engineer",
-        "Others"
+        "Finance"
       ],
       "salary": "500000",
       "startDate": "19 Dec 2020",
@@ -55,26 +55,12 @@
       "profileUrl": "../../assets/profile-images/Ellipse -2.png"
     },
     {
-      "name": "Vaishali Sharma",
-      "gender": "Female",
-      "departments": [
-        "Sales",
-        "HR"
-      ],
-      "salary": "410000",
-      "startDate": "19 Dec 2020",
-      "notes": "",
-      "id": 1604589731068,
-      "profileUrl": "../../assets/profile-images/Ellipse -4.png"
-    },
-    {
       "id": 1604589731069,
       "name": "Varun Poddar",
       "gender": "Male",
       "departments": [
         "HR",
-        "Sales",
-        "Engineer"
+        "Sales"
       ],
       "salary": "430000",
       "startDate": "16 Dec 2020",
@@ -82,24 +68,12 @@
       "profileUrl": "../../assets/profile-images/Ellipse -3.png"
     },
     {
-      "id": 1604589731070,
-      "name": "Varun Poddar",
-      "gender": "Male",
-      "departments": [
-        "Engineer",
-        "Finance"
-      ],
-      "salary": "500000",
-      "startDate": "20 Dec 2020",
-      "notes": "",
-      "profileUrl": "../../assets/profile-images/Ellipse -3.png"
-    },
-    {
       "id": 1604589731071,
-      "name": "Riddhi",
+      "name": "Riddhi Panchal",
       "gender": "Female",
       "departments": [
-        "Sales"
+        "Sales",
+        "Finance"
       ],
       "salary": "430000",
       "startDate": "19 Dec 2020",

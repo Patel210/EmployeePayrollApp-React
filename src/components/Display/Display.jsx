@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import profile1 from "../../assets/profile-images/Ellipse -1.png";
 import profile2 from "../../assets/profile-images/Ellipse -2.png";
 import profile3 from "../../assets/profile-images/Ellipse -3.png";
@@ -7,9 +7,16 @@ import profile4 from "../../assets/profile-images/Ellipse -4.png";
 import deleteIcon from "../../assets/icons/delete-black-18dp.svg";
 import editIcon from "../../assets/icons/create-black-18dp.svg";
 import { stringifyDate } from "../PayrollForm/Utility";
+import EmployeeService from "../../services/EmployeeService";
 import "./display.scss";
 
 class Display extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.employeeService = new EmployeeService();
+  }
+
   getProfilePic = (profileUrl) => {
     let index = profileUrl.split("-")[2].split(".")[0];
     switch (index) {
@@ -23,19 +30,12 @@ class Display extends React.Component {
         return profile4;
     }
   };
-  remove = (id) => {
-    console.log("Deleted");
+  remove = (employeeObject) => {
+    this.props.deleteEmployee(employeeObject);
   };
 
-  update = (id) => {
-    let employeePayrollData = this.props.employeeArray.find(
-      (empData) => empData.id === id
-    );
-    if (!employeePayrollData) {
-      return;
-    }
-    localStorage.setItem("editEmp", JSON.stringify(employeePayrollData));
-    this.props.history.push(`/payroll-form`);
+  update = (employeeObject) => {
+    this.props.updateEmployee(employeeObject);
   };
 
   componentDidMount() {
@@ -77,12 +77,12 @@ class Display extends React.Component {
                 <td>{stringifyDate(element.startDate)}</td>
                 <td>
                   <img
-                    onClick={() => this.remove(element.id)}
+                    onClick={() => this.remove(element)}
                     alt="delete"
                     src={deleteIcon}
                   />
                   <img
-                    onClick={() => this.update(element.id)}
+                    onClick={() => this.update(element)}
                     alt="edit"
                     src={editIcon}
                   />

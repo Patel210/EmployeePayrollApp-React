@@ -10,8 +10,10 @@ class EmployeeService {
         return AxiosService.getAllEmployeeService( `${this.baseUrl}employee`)
     } 
     updateEmployee(data) {
-        console.log(data.id);
         return AxiosService.updateEmployeeService(`${this.baseUrl}employee/${data.id}`, data)
+    }
+    removeEmployee(id) {
+        return AxiosService.removeEmployeeService(`${this.baseUrl}employee/${id}`)
     }
 } 
  

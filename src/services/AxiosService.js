@@ -9,6 +9,9 @@ class AxiosService {
     updateEmployeeService(url='', payload=null, tokenRequired=false, httpOptions=null) {
         return axios.put(url, payload, tokenRequired && httpOptions);
     }
+    removeEmployeeService(url='', payload=null, tokenRequired=false, httpOptions=null) {
+        return axios.delete(url, payload, tokenRequired && httpOptions);
+    }
 }
 
 module.exports = new AxiosService()

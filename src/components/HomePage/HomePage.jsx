@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import addIcon from "../../assets/icons/add-24px.svg";
 import EmployeeService from "../../services/EmployeeService";
 import Display from "../Display/Display";
@@ -26,6 +26,25 @@ class HomePage extends Component {
       .catch((error) => console.log("Error Encountered!"));
   };
 
+  remove = (employeePayrollData) => {
+    const index = this.state.employeeList.indexOf(employeePayrollData);
+    let list = this.state.employeeList;
+    list.splice(index, 1);
+    this.setState({ employeeList: list, count: list.length });
+
+    this.employeeService
+      .removeEmployee(employeePayrollData.id)
+      .then((data) => console.log("Data Removed Successfully"))
+      .catch((error) =>
+        console.log("Error Encountered while Deleting the Data!")
+      );
+  };
+
+  update = (employeePayrollData) => {
+    localStorage.setItem("editEmp", JSON.stringify(employeePayrollData));
+    this.props.history.push(`/payroll-form`);
+  };
+
   componentDidMount() {
     localStorage.removeItem("editEmp");
     this.getEmployeeList();
@@ -47,7 +66,11 @@ class HomePage extends Component {
             </Link>
           </div>
           <div className="table-main">
-            <Display employeeArray={this.state.employeeList} />
+            <Display
+              updateEmployee={this.update}
+              deleteEmployee={this.remove}
+              employeeArray={this.state.employeeList}
+            />
           </div>
         </div>
       </div>
@@ -55,4 +78,4 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default withRouter(HomePage);
