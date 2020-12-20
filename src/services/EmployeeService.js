@@ -9,6 +9,10 @@ class EmployeeService {
     getAllEmployee() {
         return AxiosService.getAllEmployeeService( `${this.baseUrl}employee`)
     } 
+    updateEmployee(data) {
+        console.log(data.id);
+        return AxiosService.updateEmployeeService(`${this.baseUrl}employee/${data.id}`, data)
+    }
 } 
  
 export default EmployeeService;

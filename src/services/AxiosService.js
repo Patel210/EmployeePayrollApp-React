@@ -6,6 +6,9 @@ class AxiosService {
     getAllEmployeeService(url='', payload=null, tokenRequired=false, httpOptions=null) {
         return axios.get(url, payload, tokenRequired && httpOptions);
     }
+    updateEmployeeService(url='', payload=null, tokenRequired=false, httpOptions=null) {
+        return axios.put(url, payload, tokenRequired && httpOptions);
+    }
 }
 
 module.exports = new AxiosService()

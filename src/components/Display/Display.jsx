@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link, Redirect, withRouter } from "react-router-dom";
 import profile1 from "../../assets/profile-images/Ellipse -1.png";
 import profile2 from "../../assets/profile-images/Ellipse -2.png";
 import profile3 from "../../assets/profile-images/Ellipse -3.png";
@@ -8,7 +9,7 @@ import editIcon from "../../assets/icons/create-black-18dp.svg";
 import { stringifyDate } from "../PayrollForm/Utility";
 import "./display.scss";
 
-export default class Display extends Component {
+class Display extends React.Component {
   getProfilePic = (profileUrl) => {
     let index = profileUrl.split("-")[2].split(".")[0];
     switch (index) {
@@ -27,8 +28,19 @@ export default class Display extends Component {
   };
 
   update = (id) => {
-    console.log("Updated");
+    let employeePayrollData = this.props.employeeArray.find(
+      (empData) => empData.id === id
+    );
+    if (!employeePayrollData) {
+      return;
+    }
+    localStorage.setItem("editEmp", JSON.stringify(employeePayrollData));
+    this.props.history.push(`/payroll-form`);
   };
+
+  componentDidMount() {
+    this.render();
+  }
 
   render() {
     return (
@@ -82,3 +94,5 @@ export default class Display extends Component {
     );
   }
 }
+
+export default withRouter(Display);

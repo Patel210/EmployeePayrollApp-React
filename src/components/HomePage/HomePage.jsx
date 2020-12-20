@@ -27,6 +27,7 @@ class HomePage extends Component {
   };
 
   componentDidMount() {
+    localStorage.removeItem("editEmp");
     this.getEmployeeList();
   }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 import profile1 from "../../assets/profile-images/Ellipse -1.png";
 import profile2 from "../../assets/profile-images/Ellipse -2.png";
 import profile3 from "../../assets/profile-images/Ellipse -3.png";
@@ -9,13 +9,27 @@ import Header from "../Header/Header";
 import { stringifyDate, checkName, checkStartDate } from "./Utility.js";
 import EmployeeService from "../../services/EmployeeService";
 
-export default class PayrollForm extends React.Component {
+class PayrollForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.departmentArray = [];
     this.employeeService = new EmployeeService();
+    this.isUpdate = false;
+    this.employeePayrollObject = {};
+    this.profileRef1 = React.createRef();
+    this.profileRef2 = React.createRef();
+    this.profileRef3 = React.createRef();
+    this.profileRef4 = React.createRef();
+    this.genderRefMale = React.createRef();
+    this.genderRefFemale = React.createRef();
+    this.departmentRef1 = React.createRef();
+    this.departmentRef2 = React.createRef();
+    this.departmentRef3 = React.createRef();
+    this.departmentRef4 = React.createRef();
+    this.departmentRef5 = React.createRef();
     this.state = {
+      id: "",
       name: "",
       profileUrl: "",
       gender: "",
@@ -158,7 +172,8 @@ export default class PayrollForm extends React.Component {
       return;
     }
 
-    let employeeData = {
+    this.employeePayrollObject = {
+      id: this.state.id,
       name: this.state.name,
       gender: this.state.gender,
       departments: this.state.departments,
@@ -167,18 +182,25 @@ export default class PayrollForm extends React.Component {
         new Date(this.state.year, this.state.month - 1, this.state.day)
       ),
       notes: this.state.notes,
-      id: "",
       profileUrl: this.state.profileUrl,
     };
-
-    this.employeeService
-      .addEmployee(employeeData)
-      .then((data) => console.log("Data Added Successfully"))
-      .catch((error) =>
-        console.log("Error Encountered while Adding the Data!")
-      );
-    alert(JSON.stringify(employeeData));
+    if (this.isUpdate) {
+      this.employeeService
+        .updateEmployee(this.employeePayrollObject)
+        .then((data) => console.log("Data Updated Successfully"))
+        .catch((error) =>
+          console.log("Error Encountered while Updating the Data!")
+        );
+    } else {
+      this.employeeService
+        .addEmployee(this.employeePayrollObject)
+        .then((data) => console.log("Data Added Successfully"))
+        .catch((error) =>
+          console.log("Error Encountered while Adding the Data!")
+        );
+    }
     this.reset();
+    this.props.history.push(`/home-page`);
   };
 
   reset = () => {
@@ -196,6 +218,120 @@ export default class PayrollForm extends React.Component {
       dateError: "",
       departmentError: "",
     });
+    this.resetGender();
+    this.resetDepartments();
+    this.resetProfileUrl();
+  };
+
+  componentDidMount() {
+    this.checkIsUpdate();
+  }
+
+  checkIsUpdate = () => {
+    let employeePayrollJson = localStorage.getItem("editEmp");
+    this.isUpdate = employeePayrollJson ? true : false;
+    if (!this.isUpdate) {
+      return;
+    }
+    this.employeePayrollObject = JSON.parse(employeePayrollJson);
+    this.setForm();
+  };
+
+  setForm = () => {
+    let date = stringifyDate(this.employeePayrollObject.startDate).split(" ");
+    let month = [
+      "",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ].indexOf(date[1]);
+    this.setGender(this.employeePayrollObject.gender);
+    this.setProfileUrl(this.employeePayrollObject.profileUrl);
+    this.setDepartment(this.employeePayrollObject.departments);
+    this.setState({
+      id: this.employeePayrollObject.id,
+      name: this.employeePayrollObject.name,
+      profileUrl: this.employeePayrollObject.profileUrl,
+      gender: this.employeePayrollObject.gender,
+      departments: this.employeePayrollObject.departments,
+      salary: this.employeePayrollObject.salary,
+      day: date[0],
+      month: month,
+      year: date[2],
+      notes: this.employeePayrollObject.notes,
+    });
+    console.log(this.state.notes);
+    this.departmentArray = this.employeePayrollObject.departments;
+  };
+
+  setProfileUrl = (profileUrl) => {
+    if (this.profileRef1.current.value == profileUrl) {
+      this.profileRef1.current.checked = true;
+    }
+    if (this.profileRef2.current.value == profileUrl) {
+      this.profileRef2.current.checked = true;
+    }
+    if (this.profileRef3.current.value == profileUrl) {
+      this.profileRef3.current.checked = true;
+    }
+    if (this.profileRef4.current.value == profileUrl) {
+      this.profileRef4.current.checked = true;
+    }
+  };
+
+  setGender = (gender) => {
+    if (this.genderRefMale.current.value === gender) {
+      this.genderRefMale.current.checked = true;
+    } else {
+      this.genderRefFemale.current.checked = true;
+    }
+  };
+
+  setDepartment = (departments) => {
+    if (departments.includes(this.departmentRef1.current.value)) {
+      this.departmentRef1.current.checked = true;
+    }
+    if (departments.includes(this.departmentRef2.current.value)) {
+      this.departmentRef2.current.checked = true;
+    }
+    if (departments.includes(this.departmentRef3.current.value)) {
+      this.departmentRef3.current.checked = true;
+    }
+    if (departments.includes(this.departmentRef4.current.value)) {
+      this.departmentRef4.current.checked = true;
+    }
+    if (departments.includes(this.departmentRef5.current.value)) {
+      this.departmentRef5.current.checked = true;
+    }
+  };
+
+  resetProfileUrl = () => {
+    this.profileRef1.current.checked = false;
+    this.profileRef2.current.checked = false;
+    this.profileRef3.current.checked = false;
+    this.profileRef4.current.checked = false;
+  };
+
+  resetGender = () => {
+    this.genderRefMale.current.checked = false;
+    this.genderRefFemale.current.checked = false;
+  };
+
+  resetDepartments = () => {
+    this.departmentRef1.current.checked = false;
+    this.departmentRef2.current.checked = false;
+    this.departmentRef3.current.checked = false;
+    this.departmentRef4.current.checked = false;
+    this.departmentRef5.current.checked = false;
   };
 
   render() {
@@ -247,6 +383,7 @@ export default class PayrollForm extends React.Component {
                     name="profileUrl"
                     value="../../assets/profile-images/Ellipse -1.png"
                     onChange={this.handleRadio}
+                    ref={this.profileRef1}
                     required
                   />
                   <img className="profile" id="image1" src={profile1} />
@@ -258,6 +395,7 @@ export default class PayrollForm extends React.Component {
                     name="profileUrl"
                     value="../../assets/profile-images/Ellipse -2.png"
                     onChange={this.handleRadio}
+                    ref={this.profileRef2}
                     required
                   />
                   <img className="profile" id="image2" src={profile2} />
@@ -269,6 +407,7 @@ export default class PayrollForm extends React.Component {
                     name="profileUrl"
                     value="../../assets/profile-images/Ellipse -3.png"
                     onChange={this.handleRadio}
+                    ref={this.profileRef3}
                     required
                   />
                   <img className="profile" id="image3" src={profile3} />
@@ -280,6 +419,7 @@ export default class PayrollForm extends React.Component {
                     name="profileUrl"
                     value="../../assets/profile-images/Ellipse -4.png"
                     onChange={this.handleRadio}
+                    ref={this.profileRef4}
                     required
                   />
                   <img className="profile" id="image4" src={profile4} />
@@ -297,6 +437,7 @@ export default class PayrollForm extends React.Component {
                   name="gender"
                   value="Male"
                   onChange={this.handleRadio}
+                  ref={this.genderRefMale}
                   required
                 />
                 <label htmlFor="male" className="text">
@@ -308,6 +449,7 @@ export default class PayrollForm extends React.Component {
                   name="gender"
                   value="Female"
                   onChange={this.handleRadio}
+                  ref={this.genderRefFemale}
                   required
                 />
                 <label htmlFor="female" className="text">
@@ -327,6 +469,7 @@ export default class PayrollForm extends React.Component {
                   name="departments"
                   value="HR"
                   onChange={this.handleCheckBox}
+                  ref={this.departmentRef1}
                 />
                 <label className="text" htmlFor="hr">
                   HR
@@ -338,6 +481,7 @@ export default class PayrollForm extends React.Component {
                   name="departments"
                   value="Sales"
                   onChange={this.handleCheckBox}
+                  ref={this.departmentRef2}
                 />
                 <label className="text" htmlFor="sales">
                   Sales
@@ -349,6 +493,7 @@ export default class PayrollForm extends React.Component {
                   name="departments"
                   value="Finance"
                   onChange={this.handleCheckBox}
+                  ref={this.departmentRef3}
                 />
                 <label className="text" htmlFor="finance">
                   Finance
@@ -360,6 +505,7 @@ export default class PayrollForm extends React.Component {
                   name="departments"
                   value="Engineer"
                   onChange={this.handleCheckBox}
+                  ref={this.departmentRef4}
                 />
                 <label className="text" htmlFor="engineer">
                   Engineer
@@ -371,6 +517,7 @@ export default class PayrollForm extends React.Component {
                   name="departments"
                   value="Others"
                   onChange={this.handleCheckBox}
+                  ref={this.departmentRef5}
                 />
                 <label className="text" htmlFor="others">
                   Others
@@ -501,8 +648,10 @@ export default class PayrollForm extends React.Component {
                 name="notes"
                 placeholder=""
                 onChange={this.handleInputChange}
-                value={this.state.note}
-              ></textarea>
+                value={this.state.notes}
+              >
+                {this.state.notes}
+              </textarea>
             </div>
             <div className="buttonParent">
               <Link to="home-page" className="resetButton button cancelButton">
@@ -527,3 +676,4 @@ export default class PayrollForm extends React.Component {
     );
   }
 }
+export default withRouter(PayrollForm);

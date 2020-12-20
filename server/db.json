@@ -1,17 +1,17 @@
 {
   "employee": [
     {
+      "id": 1604589731063,
       "name": "Vaibhavi Patel",
       "gender": "Female",
       "departments": [
-        "Sales",
-        "HR"
+        "HR",
+        "Sales"
       ],
-      "salary": "470000",
-      "startDate": "19 Dec 2020",
-      "notes": "Started Working on 19th Dec",
-      "id": 1604589731063,
-      "profileUrl": "../../assets/profile-images/Ellipse -1.png"
+      "salary": "450000",
+      "startDate": "20 Dec 2020",
+      "notes": "Started Working on 20th Dec",
+      "profileUrl": "../../assets/profile-images/Ellipse -4.png"
     },
     {
       "name": "Vishal Gupta",
@@ -26,6 +26,7 @@
       "profileUrl": "../../assets/profile-images/Ellipse -3.png"
     },
     {
+      "id": 1604589731066,
       "name": "Pranav",
       "gender": "Male",
       "departments": [
@@ -35,24 +36,22 @@
       ],
       "salary": 300000,
       "startDate": "18 Dec 2020",
-      "notes": "",
-      "id": 1604589731066,
+      "notes": "Started working on 18th December",
       "profileUrl": "../../assets/profile-images/Ellipse -3.png"
     },
     {
+      "id": 1604589731067,
       "name": "Daksh",
       "gender": "Male",
       "departments": [
         "HR",
         "Sales",
-        "Finance",
         "Engineer",
         "Others"
       ],
       "salary": "500000",
       "startDate": "19 Dec 2020",
       "notes": "",
-      "id": 1604589731067,
       "profileUrl": "../../assets/profile-images/Ellipse -2.png"
     },
     {
@@ -69,17 +68,43 @@
       "profileUrl": "../../assets/profile-images/Ellipse -4.png"
     },
     {
+      "id": 1604589731069,
       "name": "Varun Poddar",
       "gender": "Male",
       "departments": [
+        "HR",
         "Sales",
+        "Engineer"
+      ],
+      "salary": "430000",
+      "startDate": "16 Dec 2020",
+      "notes": "Started working on 16th December",
+      "profileUrl": "../../assets/profile-images/Ellipse -3.png"
+    },
+    {
+      "id": 1604589731070,
+      "name": "Varun Poddar",
+      "gender": "Male",
+      "departments": [
+        "Engineer",
         "Finance"
       ],
-      "salary": "490000",
-      "startDate": "18 Dec 2020",
+      "salary": "500000",
+      "startDate": "20 Dec 2020",
       "notes": "",
-      "id": 1604589731069,
-      "profileUrl": "../../assets/profile-images/Ellipse -2.png"
+      "profileUrl": "../../assets/profile-images/Ellipse -3.png"
+    },
+    {
+      "id": 1604589731071,
+      "name": "Riddhi",
+      "gender": "Female",
+      "departments": [
+        "Sales"
+      ],
+      "salary": "430000",
+      "startDate": "19 Dec 2020",
+      "notes": "",
+      "profileUrl": "../../assets/profile-images/Ellipse -1.png"
     }
   ]
 }
